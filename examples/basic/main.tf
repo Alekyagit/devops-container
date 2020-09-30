@@ -51,7 +51,7 @@ module "security_group" {
   vpc_id      = data.aws_vpc.default.id
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp","SSH-22-tcp","all-icmp"]
+  ingress_rules       = ["http-80-tcp","all-icmp"]
   egress_rules        = ["all-all"]
 }
 
@@ -80,7 +80,7 @@ module "ec2" {
   instance_count = 2
 
   name          = "example-normal"
-  ami           = ami-0affd4508a5d2481b
+  ami           = "ami-0affd4508a5d2481b"
   instance_type = "t2.medium"
   key_name = "${aws_key_pair.myTerraformKeyPair.key_name}"  
   subnet_id     = tolist(data.aws_subnet_ids.all.ids)[0]
